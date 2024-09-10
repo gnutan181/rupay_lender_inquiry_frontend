@@ -8,6 +8,12 @@ import { useNavigate } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 
 import { useParams } from "react-router-dom";
+import UpdateService from "./UpdateService";
+import CreditCardList from "./ServiceTables/CreditCardList";
+import HomeLoanList from "./ServiceTables/HomeLoanList";
+import PersonalLoanList from "./ServiceTables/PersonaLoanList";
+import BusinessLoanList from "./ServiceTables/BusinessLoanList";
+import LapList from "./ServiceTables/LapList";
 
 
 const Service = () => {
@@ -34,39 +40,21 @@ const Service = () => {
   // Fetch all loans
   const fetchServiceData = useCallback(async () => {
     try {
-      const res = await axiosInstance.get(`/inquiry/get-inquiries`);
-      // const res = await axiosInstance.get(/inquiry/get-inquiries/${apiEndpoints[serviceType]});
-      setServiceData(res.data.inquiries);
-      setPageCount(Math.ceil(res.data.inquiries.length / itemsPerPage));
+      // const res = await axiosInstance.get(`/inquiry/get-inquiries`);
+      const res = await axiosInstance.get(`/inquiry/services/${apiEndpoints[serviceType]}`);
+      setServiceData(res?.data?.inquires);
+      setPageCount(Math.ceil(res?.data?.inquires?.length / itemsPerPage));
     } catch (error) {
       console.error("Error fetching loan data:", error);
     }
-  }, []);
+  }, [serviceType, apiEndpoints]);
 
   useEffect(() => {
     fetchServiceData();
   }, [fetchServiceData]);
 
-  const handleViewDetails = (id) => {
-    navigate(`/${serviceType}-loan-details/${id}`);
-  };
 
-  const getStatusColor = (status) => {
-    switch (status) {
-      case "Process":
-        return "#33CC66";
-      case "Completed":
-        return "#FEDB3F";
-      case "Pending":
-        return "#F48C7F";
-      case "Cancel":
-        return "#ED2037";
-      case "on-hold":
-        return "#ED2037";
-      default:
-        return "inherit";
-    }
-  };
+ 
 
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
@@ -78,143 +66,74 @@ const Service = () => {
     return serviceData.slice(offset, offset + itemsPerPage);
   }, [serviceData, currentPage, itemsPerPage]);
 
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [selectedCardId, setSelectedCardId] = useState("");
+
+
+  async function updatedService(data) {
+    try {
+      await axiosInstance.put(`/inquiry/update-status/${selectedCardId}`, data);
+    } catch (error) {
+      if (error.response) {
+        console.error("Error Response:", error.response.data);
+        console.error("Error Status:", error.response.status);
+        console.error("Error Headers:", error.response.headers);
+      } else if (error.request) {
+        console.error("Error Request:", error.request);
+      } else {
+        console.error("Error Message:", error.message);
+      }
+      console.error("Error Config:", error.config);
+    }
+  }
+
+
+  const editCard = (applicationId) => {
+    setShowUpdateModal(true);
+    setSelectedCardId(applicationId);
+  };
+
+  const SubmitUpdateService = async (selectedStatus) => {
+    setShowUpdateModal(false);
+
+    try {
+      // Update the service status via API call
+      await updatedService(selectedStatus);
+
+      // Fetch the updated service list
+      await fetchServiceData();
+    } catch (error) {
+      console.error("Error updating service status:", error);
+    }
+  };
+
   return (
     <div className="flex flex-col bg-[#FFFFFF] m-2 p-2 font-Inter w-full">
       <h2 className="text-lg md:text-xl text-[#3B3935] font-semibold my-2 capitalize">
-        {serviceType.replace("-", " ")}
+        {serviceType.replaceAll("-", " ")}
       </h2>
 
       <div className="-m-1.5 overflow-x-auto h-[70vh] overflow-y-scroll">
-        <div className="p-1.5 min-w-full inline-block align-middle">
-          <div className="overflow-hidden">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead>
-                <tr>
-                  <th
-                    scope="col"
-                    className="px-3 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                  >
-                    Application Id.
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                  >
-                    Name
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                  >
-                    Phone
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                  >
-                    Email
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                  >
-                    DOB
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                  >
-            Monthly Income
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                  >
-            Employment Type
-                  </th>
-                  
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                  >
-                    Created loan
-                  </th>
-                  
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                  >
-                    City
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                  >
-                    Status
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                  >
-                    Action
-                  </th>
-                </tr>
-              </thead>
-              {paginatedData && paginatedData.length > 0 ? (
-                paginatedData.map((item, i) => (
-                  <tbody key={i} className="divide-y divide-gray-200">
-                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-[#3B3935] font-normal text-xs md:text-sm">
-                      <td className="px-3 py-4">{item.applicationID}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                        {item?.username || "N/A"}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                        {item?.mobile || "N/A"}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                        {item?.email || "N/A"}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                        {item?.dob || "N/A"}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                        {item?.monthlyIncome || "N/A"}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                        {item?.employmentType || "N/A"}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                        {item?.createdLoan || "N/A"}
-                      </td>
-                      
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                        {item.vendorInfo?.city || "N/A"}
-                      </td>
-                      <td
-                        style={{ color: getStatusColor(item?.status) }}
-                        className="px-6 py-4 whitespace-nowrap text-sm text-gray-800"
-                      >
-                        {item?.status?.loanStatus || "N/A"}
-                      </td>
-                      <td className="px-8 py-4 whitespace-nowrap text-sm text-gray-800 ">
-                        <MdOutlineRemoveRedEye
-                          className="text-2xl cursor-pointer"
-                          onClick={() => handleViewDetails(item._id)}
-                        />
-                      </td>
-                    </tr>
-                  </tbody>
-                ))
-              ) : (
-                <tbody>
-                  <tr>
-                    <td colSpan="8" className="text-center py-4">
-                      No data found
-                    </td>
-                  </tr>
-                </tbody>
-              )}
-            </table>
+        <div className="p-1.5 w-full inline-block align-middle">
+          <div className="overflow-hidden min-h-[50vh] lg:max-w-[790px] xl:max-w-[1030px] 2xl:max-w-[1230px] 3xl:max-w-[1420px] 4xl:max-w-fit overflow-x-auto">
+            {
+              serviceType === 'home-loan' || serviceType === 'hlbt-loan' ?
+              <HomeLoanList paginatedData={paginatedData} editCard={editCard}/> 
+              :
+              serviceType === 'personal-loan' || serviceType === 'plbt-loan' ?
+              <PersonalLoanList paginatedData={paginatedData} editCard={editCard}/> 
+              :
+              serviceType === 'lap-loan' || serviceType === 'lap-bt-loan' ?
+              <LapList paginatedData={paginatedData} editCard={editCard}/> 
+              :
+              serviceType === 'business-loan' ?
+              <BusinessLoanList paginatedData={paginatedData} editCard={editCard}/> 
+              :
+              serviceType === 'credit-card'?
+              <CreditCardList paginatedData={paginatedData} editCard={editCard}/> 
+              :
+              null
+            }
           </div>
         </div>
       </div>
@@ -244,6 +163,17 @@ const Service = () => {
           />
         </div>
       )}
+
+
+{
+  showUpdateModal && 
+
+<UpdateService
+        showUpdateModal={showUpdateModal}
+        setShowUpdateModal={setShowUpdateModal}
+        SubmitUpdateService={SubmitUpdateService}
+      />
+}
     </div>
   );
 };

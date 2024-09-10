@@ -41,7 +41,7 @@ const Login = () => {
 
       try {
         const response = await axios.post(
-          "https://web-rupay-lender-back-production.up.railway.app/admin/login-admin",
+          "https://web-rupay-lender-back-production.up.railway.app/inquiry/login",
           {
             email,
             password,
