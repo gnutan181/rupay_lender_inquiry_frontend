@@ -2,8 +2,8 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  // baseURL: 'http://localhost:8080',
-  baseURL : 'https://web-rupay-lender-back-production.up.railway.app'
+  baseURL: 'http://localhost:8080',
+  // baseURL : 'https://web-rupay-lender-back-production.up.railway.app'
 });
 
 axiosInstance.interceptors.request.use(
