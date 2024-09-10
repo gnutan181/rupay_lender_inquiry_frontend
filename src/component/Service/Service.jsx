@@ -1,4 +1,4 @@
-// Loan.js
+// Service.js
 import { useCallback, useEffect, useState, useMemo } from "react";
 import axiosInstance from "../axiosInstance";
 
@@ -10,7 +10,7 @@ import ReactPaginate from "react-paginate";
 import { useParams } from "react-router-dom";
 
 
-const Loan = () => {
+const Service = () => {
   const params = useParams();
   const serviceType = params.servicename;
 
@@ -248,5 +248,5 @@ const Loan = () => {
   );
 };
 
-export default Loan;
+export default Service;
 

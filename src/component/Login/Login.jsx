@@ -61,7 +61,7 @@ const Login = () => {
             JSON.stringify(response?.data?.token)
           );
           setTimeout(() => {
-            navigate("/user");
+            navigate("/service/home-loan");
           }, 3000);
         } else {
           throw new Error("Something went wrong! Please try again.");

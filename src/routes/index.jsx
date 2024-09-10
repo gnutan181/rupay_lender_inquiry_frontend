@@ -4,12 +4,11 @@ import { Navigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import useGetId from '../hooks/useGetId';
 const Login = React.lazy(()=> import('../component/Login/Login'));
-const Loan = React.lazy(()=> import('../component/Loan/Loan'));
-const LoanDetails = React.lazy(()=> import('../component/Loan/LoanDetails'));
 const SideBar = React.lazy(()=> import('../component/SideBar/SideBar'));
 const Navbar = React.lazy(()=> import('../component/Navbar/Navbar'));
 
-import { useParams } from 'react-router-dom';
+import Service from '../component/Service/Service';
+import ServiceDetails from '../component/Service/ServiceDetails';
 
 
 
@@ -71,14 +70,14 @@ const Routers = () => {
 
                      <Route 
                      path='/service/:servicename'
-                     element={isToken ? <Loan /> : <Navigate to='/login'/>}
+                     element={isToken ? <Service/> : <Navigate to='/login'/>}
                      />
 
                     
 
 <Route
                         path="service/:serviceType/:serviceId"
-                        element={isToken ? <LoanDetails /> : <Navigate to='/login'/>}
+                        element={isToken ? <ServiceDetails/> : <Navigate to='/login'/>}
                     />
 
 

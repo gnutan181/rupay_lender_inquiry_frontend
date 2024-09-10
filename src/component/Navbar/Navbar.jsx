@@ -66,43 +66,15 @@ const Navbar = ({ setDisplaySideBar }) => {
           </div>
         </div>
         <div className="flex items-center justify-center gap-4">
-          <div
-            onClick={() => {
-              navigate("/created-cards");
-            }}
-            className="w-8 h-8 md:w-10 md:h-10 border border-[#F89D28] rounded-full bg-[#FFFFFF] flex items-center justify-center cursor-pointer"
-          >
-            <p className="text-[#F89D28]">Card</p>
-          </div>
+        
 
           <div
-            onClick={() => {
-              navigate("/create-blog");
-            }}
-            className="w-8 h-8 md:w-10 md:h-10 border border-[#F89D28] rounded-full bg-[#FFFFFF] flex items-center justify-center cursor-pointer"
-          >
-            <p className="text-[#F89D28]">CB</p>
-          </div>
-
-          <div
-            onClick={() => {
-              navigate("/add-subAdmin");
-            }}
-            className="w-8 h-8 md:w-10 md:h-10 border border-[#F89D28] rounded-full bg-[#FFFFFF] flex items-center justify-center cursor-pointer"
-          >
-            <RiAddLargeFill className="text-base md:text-lg text-[#F89D28]" />
-          </div>
-
-          <div
-            onClick={() => {
-              navigate("/notification");
-            }}
             className="cursor-pointer relative w-8 h-8 md:w-10 md:h-10 border border-[#F89D28] rounded-full bg-[#FFFFFF] flex items-center justify-center"
           >
             <MdNotificationsActive className="text-xl md:text-2xl text-[#F89D28]" />
-            <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-[#F89D28] border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
+            {/* <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-[#F89D28] border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
               15
-            </div>
+            </div> */}
           </div>
           <div
             onClick={handleLogout}
