@@ -8,7 +8,12 @@ export default {
     extend: {
       fontFamily: {
         Inter : 'Inter'
-      }
+      },
+      screens: {
+        'xs': '450px',
+        '3xl': '1700px',
+        '4xl' : '2000px'
+      },
     },
   },
   plugins: [

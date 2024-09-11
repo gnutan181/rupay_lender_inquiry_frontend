@@ -8,7 +8,6 @@ const SideBar = React.lazy(()=> import('../component/SideBar/SideBar'));
 const Navbar = React.lazy(()=> import('../component/Navbar/Navbar'));
 
 import Service from '../component/Service/Service';
-import ServiceDetails from '../component/Service/ServiceDetails';
 
 
 
@@ -74,12 +73,6 @@ const Routers = () => {
                      />
 
                     
-
-<Route
-                        path="service/:serviceType/:serviceId"
-                        element={isToken ? <ServiceDetails/> : <Navigate to='/login'/>}
-                    />
-
 
 
 
