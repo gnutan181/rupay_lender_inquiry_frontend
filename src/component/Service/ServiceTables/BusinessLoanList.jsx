@@ -103,7 +103,7 @@ const BusinessLoanList = ({paginatedData, editCard}) => {
                         {item?.email || "N/A"}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                        {item?.pinCode || "N/A"}
+                        {item?.pincode || "N/A"}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                         {item?.address || "N/A"}
