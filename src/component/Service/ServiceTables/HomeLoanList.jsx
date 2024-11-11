@@ -78,7 +78,7 @@ const HomeLoanList = ({paginatedData, editCard}) => {
               {paginatedData && paginatedData.length > 0 ? (
                 paginatedData.map((item, i) => (
                   <tbody key={i} className="divide-y divide-gray-200">
-                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-[#3B3935] font-normal text-xs md:text-sm">
+                    <tr className="bg-white border-b dark:bg-gray-200 dark:border-gray-700 text-[#3B3935] font-normal text-xs md:text-sm">
                       <td className="px-3 py-4">{item.applicationID}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                         {item?.username || "N/A"}
