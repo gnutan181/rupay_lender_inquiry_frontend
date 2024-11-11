@@ -43,6 +43,7 @@ const Navbar = ({ setDisplaySideBar }) => {
             className="text-xl lg:hidden text-[#FFFFFF] cursor-pointer"
           />
 
+
           {/* search bar */}
           <div
             className="bg-[#FFFFFF] rounded-[34px]
@@ -68,14 +69,22 @@ const Navbar = ({ setDisplaySideBar }) => {
         <div className="flex items-center justify-center gap-4">
         
 
-          <div
+           <div
             className="cursor-pointer relative w-8 h-8 md:w-10 md:h-10 border border-[#F89D28] rounded-full bg-[#FFFFFF] flex items-center justify-center"
           >
             <MdNotificationsActive className="text-xl md:text-2xl text-[#F89D28]" />
-            {/* <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-[#F89D28] border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
+            <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-[#F89D28] border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
               15
-            </div> */}
-          </div>
+            </div> 
+          </div> 
+          <div 
+            onClick={() => {
+              navigate("/create-blog");
+            }}
+            className="w-8 h-8 md:w-10 md:h-10 border border-[#F89D28] rounded-full bg-[#FFFFFF] flex items-center justify-center cursor-pointer"
+          >
+              <p className="text-[#F89D28]">Create blogs</p>
+              </div>
           <div
             onClick={handleLogout}
             className="cursor-pointer w-8 h-8 md:w-10 md:h-10 border border-[#F89D28] rounded-full bg-[#FFFFFF] flex items-center justify-center"

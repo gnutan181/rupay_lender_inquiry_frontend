@@ -41,7 +41,7 @@ const Login = () => {
 
       try {
         const response = await axios.post(
-          "https://web-rupay-lender-back-production.up.railway.app/inquiry/login",
+          "http://localhost:8080/inquiry/login",
           {
             email,
             password,
@@ -67,9 +67,9 @@ const Login = () => {
           throw new Error("Something went wrong! Please try again.");
         }
       } 
-      catch (error) {
+      catch(error){
         toast.update(loadingToast, {
-          render: "Something went wrong! Please try again.",
+          render: error.message || "Something went wrong! Please try again.",
           type: "error",
           isLoading: false,
           autoClose: 5000,

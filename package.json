@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@react-pdf/renderer": "^3.4.4",
+    "@uiw/react-markdown-editor": "^6.1.2",
     "axios": "^1.7.7",
     "formik": "^2.4.6",
     "jspdf": "^2.5.1",

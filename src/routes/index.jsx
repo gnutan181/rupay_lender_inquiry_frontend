@@ -8,6 +8,7 @@ const SideBar = React.lazy(()=> import('../component/SideBar/SideBar'));
 const Navbar = React.lazy(()=> import('../component/Navbar/Navbar'));
 
 import Service from '../component/Service/Service';
+import CreateBlog from '../component/CreateBlog/CreateBlog';
 
 
 
@@ -71,7 +72,10 @@ const Routers = () => {
                      path='/service/:servicename'
                      element={isToken ? <Service/> : <Navigate to='/login'/>}
                      />
-
+<Route 
+                        path='/create-blog'
+                        element={isToken ? <CreateBlog/> : <Navigate to='/login'/>}
+                    />
                     
 
 
