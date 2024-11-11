@@ -61,18 +61,24 @@ const {role,setRole} = useRole()
             "token",
             JSON.stringify(response?.data?.token)
           );
-          console.log(role)
+          // console.log(role)
+          // console.log(role == "salesMan")
+          if(role === "salesMan"){
           setTimeout(() => {
-            if(role == "blogger"){
-              console.log("ewfe")
-              navigate("/create-blog");
-
-            }
-            else{
-
+              // console.log("ewfe")
               navigate("/service/home-loan");
+              
+            }  , 3000);
+          }
+          else{
+            setTimeout(() => {
+              // console.log("ewfe")
+              navigate("/create-blog");
+              
+            }  , 3000);
+
             }
-          }, 3000);
+         
         } else {
           throw new Error("Something went wrong! Please try again.");
         }

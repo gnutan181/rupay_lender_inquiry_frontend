@@ -40,14 +40,14 @@ const Routers = () => {
 
     return (
         <div className='overflow-hidden min-h-[100vh] h-fit lg:flex'>
-            {/* {
-                location.pathname !== '/login' && role !== "blogger" ?
+            {
+                (location.pathname !== '/login' && role == "blogger") ?
                 <SideBar displaySideBar={displaySideBar} setDisplaySideBar={setDisplaySideBar}/>
                 :
                 null
 
 
-            } */}
+            }
         
 
             <div className='grow bg-[#EFEFEF] '>
