@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import frameImage from "../../assets/login/Frame.png";
+import useRole from "../../hooks/useRole";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-
+const {role,setRole} = useRole()
   const [showPassword, setShowPassword] = useState(false);
 
   const handleInputChange = (event) => {
@@ -55,13 +56,22 @@ const Login = () => {
             isLoading: false,
             autoClose: 3000,
           });
-
+                setRole(response?.data?.role)
           sessionStorage.setItem(
             "token",
             JSON.stringify(response?.data?.token)
           );
+          console.log(role)
           setTimeout(() => {
-            navigate("/service/home-loan");
+            if(role == "blogger"){
+              console.log("ewfe")
+              navigate("/create-blog");
+
+            }
+            else{
+
+              navigate("/service/home-loan");
+            }
           }, 3000);
         } else {
           throw new Error("Something went wrong! Please try again.");

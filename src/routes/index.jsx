@@ -9,6 +9,7 @@ const Navbar = React.lazy(()=> import('../component/Navbar/Navbar'));
 
 import Service from '../component/Service/Service';
 import CreateBlog from '../component/CreateBlog/CreateBlog';
+import useRole from '../hooks/useRole';
 
 
 
@@ -32,21 +33,21 @@ const Routers = () => {
     const isToken = sessionStorage.getItem('token') || '';
 
     const location = useLocation();
- 
+ const role = useRole()
     const [displaySideBar, setDisplaySideBar] = useState(false)
     const userId = useGetId()
 
 
     return (
         <div className='overflow-hidden min-h-[100vh] h-fit lg:flex'>
-            {
-                location.pathname !== '/login' ?
+            {/* {
+                location.pathname !== '/login' && role !== "blogger" ?
                 <SideBar displaySideBar={displaySideBar} setDisplaySideBar={setDisplaySideBar}/>
                 :
                 null
 
 
-            }
+            } */}
         
 
             <div className='grow bg-[#EFEFEF] '>
@@ -76,18 +77,11 @@ const Routers = () => {
                         path='/create-blog'
                         element={isToken ? <CreateBlog/> : <Navigate to='/login'/>}
                     />
-                    
-
-
-
                     <Route 
                     path='*'
-                    element = {'eror page or not page found'}
+                    element = {'error page or not page found'}
                     />
-
             </Routes>
-
-
                     </Suspense>
             </div>
 

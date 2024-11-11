@@ -13,7 +13,6 @@ const useGetId = () => {
       console.error('Failed to fetch user ID:', error);
     }
   };
-
   useEffect(() => {
     getId();
   }, []);
