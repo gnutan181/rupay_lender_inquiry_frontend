@@ -37,7 +37,7 @@ const CreateBlog = () => {
 
       notify("Blogs created successfully!", "success");
       setTimeout(() => {
-        navigate("/user");
+        navigate("/create-blog");
       }, 3000);
 
     } catch (error) {
