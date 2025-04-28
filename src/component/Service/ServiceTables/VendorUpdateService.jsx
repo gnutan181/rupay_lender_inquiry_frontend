@@ -67,9 +67,7 @@ const VendorUpdateService = ({
                       <option value="Call back in sometime" label="Call back in sometime" />
                       <option value="Documents awaited" label="Documents awaited" />
                       <option value="Final On-Boarding" label="Final On-Boarding" />
-                      <option value="Not eligible" label="Not eligible" />
-                      <option value="Reject(Due to Internal policy)" label="Reject(Due to Internal policy)" />
-                      <option value="Area not sourcable" label="Area not sourcable" />
+                    
                  
                     </select>
                     {formik.touched.status && formik.errors.status ? (

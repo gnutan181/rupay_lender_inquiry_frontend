@@ -65,6 +65,11 @@ const UpdateService = ({
                       <option value="" label="Select status" />
                       <option value="Called-No response" label="Called-No response" />
                       <option value="Call back in sometime" label="Call back in sometime" />
+                      <option value="Not eligible" label="Not eligible" /> 
+                      <option value="Reject(Due to Internal policy)" label="Reject(Due to Internal policy)" /> 
+                      <option value="Area not sourcable" label="Area not sourcable" />
+                      <option value="language barrier" label="language barrier" />
+
                       <option value="Documents awaited" label="Documents awaited" />
                       <option value="Offer shared" label="Offer shared" />
                       <option value="Final verification" label="Final verification" />
