@@ -30,7 +30,7 @@ const CreateBlog = () => {
 
   async function createBlog(formData) {
     try {
-      const response = await axiosInstance.post(
+       await axiosInstance.post(
         `/admin/create-blog`,
         formData
       );

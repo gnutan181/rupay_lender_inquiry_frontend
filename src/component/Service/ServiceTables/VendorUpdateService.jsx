@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-  // showModal={showModal}
-  //       setShowModal={setShowModal}
-const UpdateService = ({
-  showUpdateModal,
-  setShowUpdateModal,
-  SubmitUpdateService,
+
+const VendorUpdateService = ({
+  showModal,
+  setShowModal,id,SubmitVendorUpdateService
 }) => {
+    
+      
   const formik = useFormik({
     initialValues: {
       status: "",
@@ -19,13 +19,13 @@ const UpdateService = ({
       status: Yup.string().required("status is required"),
     }),
     onSubmit: async (values, { resetForm }) => {
-      SubmitUpdateService(values);
+      SubmitVendorUpdateService(values.status,id);
       resetForm();
-      setShowUpdateModal(false);
+      setShowModal(false);
     },
   });
 
-  if (!showUpdateModal) return null;
+  if (!showModal) return null;
 
   return (
     <>
@@ -35,7 +35,7 @@ const UpdateService = ({
             <div className="w-full flex items-center justify-end">
               <RxCross1
                 onClick={() => {
-                  setShowUpdateModal(false);
+                  setShowModal(false);
                 }}
                 className="text-2xl text-[#000000] font-bold cursor-pointer"
               />
@@ -66,9 +66,11 @@ const UpdateService = ({
                       <option value="Called-No response" label="Called-No response" />
                       <option value="Call back in sometime" label="Call back in sometime" />
                       <option value="Documents awaited" label="Documents awaited" />
-                      <option value="Offer shared" label="Offer shared" />
-                      <option value="Final verification" label="Final verification" />
-                      <option value="Disbursed" label="Disbursed" />
+                      <option value="Final On-Boarding" label="Final On-Boarding" />
+                      <option value="Not eligible" label="Not eligible" />
+                      <option value="Reject(Due to Internal policy)" label="Reject(Due to Internal policy)" />
+                      <option value="Area not sourcable" label="Area not sourcable" />
+                 
                     </select>
                     {formik.touched.status && formik.errors.status ? (
                       <p className="text-red-500 text-xs mt-1">
@@ -95,10 +97,11 @@ const UpdateService = ({
   );
 };
 
-UpdateService.propTypes = {
-  showUpdateModal: PropTypes.bool,
-  setShowUpdateModal: PropTypes.func,
-  SubmitUpdateService: PropTypes.func,
+VendorUpdateService.propTypes = {
+  showModal: PropTypes.bool,
+  setShowModal: PropTypes.func,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  SubmitVendorUpdateService: PropTypes.func,
 };
 
-export default UpdateService;
+export default VendorUpdateService;

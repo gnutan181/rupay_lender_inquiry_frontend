@@ -99,7 +99,7 @@ const HomeLoanList = ({paginatedData, editCard}) => {
                         {item?.state || "N/A"}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                        {item?.createdLoan || "N/A"}
+                        {item?.createdInquiry || "N/A"}
                       </td>
                       <td
                         style={{ color: getStatusColor(item?.status) }}

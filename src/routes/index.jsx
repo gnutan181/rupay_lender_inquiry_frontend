@@ -2,14 +2,17 @@ import React, { useState, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import useGetId from '../hooks/useGetId';
+// import useGetId from '../hooks/useGetId';
 const Login = React.lazy(() => import('../component/Login/Login'));
 const SideBar = React.lazy(() => import('../component/SideBar/SideBar'));
 const Navbar = React.lazy(() => import('../component/Navbar/Navbar'));
 
 import Service from '../component/Service/Service';
 import CreateBlog from '../component/CreateBlog/CreateBlog';
-import useRole from '../hooks/useRole';
+// import useRole from '../hooks/useRole';
+import Vendor from '../component/Service/ServiceTables/Vendor';
+import VendorDetails from '../component/Service/ServiceTables/VendorDetails';
+// import { subAdminRole } from '../hooks/useGetDepartment';
 
 
 
@@ -33,16 +36,16 @@ const Routers = () => {
     const isToken = sessionStorage.getItem('token') || '';
 
     const location = useLocation();
-    const role = useRole()
+    // const role = useRole()
     const [displaySideBar, setDisplaySideBar] = useState(false)
-    const userId = useGetId()
+    // const userId = useGetId()
 
 
     return (
         <div className='overflow-hidden min-h-[100vh] h-fit lg:flex'>
             {
 
-                location.pathname !== '/login' && location.pathname !== '/create-blog' && role !== "blogger" ?
+                location.pathname !== '/login' && location.pathname !== '/create-blog'?
                     <SideBar displaySideBar={displaySideBar} setDisplaySideBar={setDisplaySideBar} />
                     :
                     null
@@ -77,9 +80,17 @@ const Routers = () => {
                             path='/create-blog'
                             element={isToken ? <CreateBlog /> : <Navigate to='/login' />}
                         />
+                         <Route
+                            path='/vendor'
+                            element={isToken ? <Vendor /> : <Navigate to='/login' />}
+                        />
                         <Route
                             path='*'
                             element={'error page or not page found'}
+                        />
+                         <Route
+                            path='/vendor-details/:userId'
+                            element={isToken ? <VendorDetails /> : <Navigate to='/login' />}
                         />
                     </Routes>
                 </Suspense>

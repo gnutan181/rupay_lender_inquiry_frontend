@@ -3,8 +3,8 @@ import { useCallback, useEffect, useState, useMemo } from "react";
 import axiosInstance from "../axiosInstance";
 
 // import { TbDownload } from "react-icons/tb";
-import { MdOutlineRemoveRedEye } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+// import { MdOutlineRemoveRedEye } from "react-icons/md";
+// import { useNavigate } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 
 import { useParams } from "react-router-dom";
@@ -20,7 +20,7 @@ const Service = () => {
   const params = useParams();
   const serviceType = params.servicename;
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [serviceData, setServiceData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [pageCount, setPageCount] = useState(0);
@@ -133,6 +133,7 @@ const Service = () => {
               <CreditCardList paginatedData={paginatedData} editCard={editCard}/> 
               :
               null
+              
             }
           </div>
         </div>
