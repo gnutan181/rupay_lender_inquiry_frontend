@@ -69,7 +69,6 @@ const UpdateService = ({
                       <option value="Reject(Due to Internal policy)" label="Reject(Due to Internal policy)" /> 
                       <option value="Area not sourcable" label="Area not sourcable" />
                       <option value="language barrier" label="language barrier" />
-
                       <option value="Documents awaited" label="Documents awaited" />
                       <option value="Offer shared" label="Offer shared" />
                       <option value="Final verification" label="Final verification" />
