@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import PropTypes from "prop-types";
 
 const BusinessLoanList = ({paginatedData, editCard}) => {
@@ -119,7 +120,7 @@ const BusinessLoanList = ({paginatedData, editCard}) => {
                       </td>
                       
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                        {item?.createdLoan || "N/A"}
+                        {dayjs(item?.createdAt).format('DD MMM YYYY')  || "N/A"}
                       </td>
                       <td
                         style={{ color: getStatusColor(item?.status) }}

@@ -121,7 +121,7 @@ const Service = () => {
               <HomeLoanList paginatedData={paginatedData} editCard={editCard}/> 
               :
               serviceType === 'personal-loan' || serviceType === 'plbt-loan' ?
-              <PersonalLoanList paginatedData={paginatedData} editCard={editCard}/> 
+              <PersonalLoanList paginatedData={serviceData} editCard={editCard}/> 
               :
               serviceType === 'lap-loan' || serviceType === 'lap-bt-loan' ?
               <LapList paginatedData={paginatedData} editCard={editCard}/> 
@@ -139,7 +139,7 @@ const Service = () => {
         </div>
       </div>
 
-      {serviceData && (
+      {/* {serviceData && (
         <div className="m-4">
           <ReactPaginate
             breakLabel={"..."}
@@ -163,7 +163,7 @@ const Service = () => {
             nextClassName={currentPage === pageCount - 1 ? "hidden" : ""}
           />
         </div>
-      )}
+      )} */}
 
 
 {

@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import PropTypes from "prop-types";
 
 const LapList = ({paginatedData, editCard}) => {
@@ -151,7 +152,7 @@ const LapList = ({paginatedData, editCard}) => {
                         {item?.propertyType || "N/A"}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                        {item?.createdInquiry || "N/A"}
+                        { dayjs(item?.createdAt).format('DD MMM YYYY') || "N/A"}
                       </td>
                       <td
                         style={{ color: getStatusColor(item?.status) }}
