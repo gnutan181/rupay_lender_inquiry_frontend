@@ -6,16 +6,13 @@ import { NavLink } from "react-router-dom";
 
 import { department } from "../../hooks/useGetDepartment";
 const SideBar = ({ displaySideBar, setDisplaySideBar }) => {
-  // const { department } = useRole(); // Assuming department is an array of strings
   const [filteredItems, setFilteredItems] = useState([]);
   const sideBarRef = useRef(null);
   const [open] = useState(true);
-  // const { pathname } = useLocation();
-  // const {department} = useContext(UserContext)
-  // List of all sidebar items
-  const allItems =
-    [
-      { title: "Vendor Lead", route: "/vendor" },
+ 
+  useEffect(() => {
+ const allItems =
+ [
       { title: "Home Loan", route: "/service/home-loan" },
       { title: "Home Loan Balance Transfer", route: "/service/hlbt-loan" },
       { title: "Personal Loan", route: "/service/personal-loan" },
@@ -24,19 +21,14 @@ const SideBar = ({ displaySideBar, setDisplaySideBar }) => {
       { title: "Loan Against Property Balance Transfer", route: "/service/lap-bt-loan" },
       { title: "Credit Card", route: "/service/credit-card" },
       { title: "Business Loan", route: "/service/business-loan" },
+      { title: "Web dev", route: "/service/web-dev" },
+      { title: "Used Car loan", route: "/service/used-car-loan" },
+      { title: "Motor Insurance", route: "/service/motor-insurance" },
+      { title: "Professional loan", route: "/service/professional-loan" },
+      { title: "Social Media", route: "/service/social-media" },
+      { title: "Graphic design", route: "/service/graphic-design" },
     ]
-
-
-  // Filter items based on the department array
-  useEffect(() => {
-    // console.log("allItems:", allItems);
-    // console.log("department:", department);
-    // if (department.length() < 1 || !Array.isArray(department)) {
-    //   console.error("department is undefined or not an array");
-    //   setFilteredItems([]);
-    //   return;
-    // }
-    const filtered = allItems.filter((item) =>
+    const filtered = allItems?.filter((item) =>
       department.some((dep) =>
         item.title.toLowerCase().includes(dep.toLowerCase())
       )
@@ -81,7 +73,7 @@ const SideBar = ({ displaySideBar, setDisplaySideBar }) => {
 
         <div className="bg-[#3B3935] text-white">
           <ul className="h-[85vh] overflow-y-scroll scrollbar-thin scrollbar-track-[#3B3935] scrollbar-thumb-[#F89D28]">
-            {filteredItems.map((val, index) => (
+            {filteredItems?.map((val, index) => (
               <li key={index} className="mx-4 my-2">
                 <NavLink
                   to={val.route}

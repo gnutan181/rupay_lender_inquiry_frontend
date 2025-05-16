@@ -6,12 +6,10 @@ import { IoEyeOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { setDepartment ,setSubAdminRole , setPermission } from "../../hooks/useGetDepartment";
-// subAdminPermission,subAdminRole,department
+import { setDepartment ,setSubAdminRole , setPermission,  } from "../../hooks/useGetDepartment";
 
 import frameImage from "../../assets/login/Frame.png";
-import useRole from "../../hooks/useRole";
-// import { UserContext } from "../../hooks/UserContext";
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -19,9 +17,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const { setRole} = useRole();
-  // const {department,setDepartment} = useContext(UserContext)
-  // console.log(department)
+ 
   const [showPassword, setShowPassword] = useState(false);
 
   const handleInputChange = (event) => {
@@ -31,6 +27,50 @@ const Login = () => {
       [name]: value,
     }));
   };
+  const handleNavigation = (department, role) => {
+  if (role === "blogger") {
+    return navigate("/create-blog");
+  }
+
+ 
+  switch (department?.toLowerCase()) {
+      case "personal loan":
+      navigate("/service/personal-loan");
+      break;
+       case "home loan":
+      navigate("/service/home-loan");
+      break;
+          case "business loan":
+      navigate("/service/business-loan");
+      break;
+           case "loan against property":
+      navigate("/service/lap-loan");
+      break;
+           case 'used car loan':
+      navigate("/service/used-car-loan");
+      break;
+                case 'credit card':
+      navigate("/service/credit-card");
+      break;
+    case "web dev":
+      navigate("/service/web-dev");
+      break;
+    case "social media":
+      navigate("/service/social-media");
+      break;
+    case "professional loan":
+      navigate("/service/professional-loan");
+      break;
+    case "motor insurance":
+      navigate("/service/motor-insurance");
+      break;
+    case "graphic design":
+      navigate("/service/graphic-design");
+      break;
+    default:
+      navigate("/service/personal-loan"); // Default fallback
+  }
+};
 
   // Handle login submission
   const submitData = async (event) => {
@@ -62,14 +102,20 @@ const Login = () => {
           sessionStorage.setItem("token", JSON.stringify(response?.data?.token));
           setSubAdminRole(response?.data?.role);
           // setPermission
-          setRole(response?.data?.role)
+          // setRole(response?.data?.role)
           setDepartment(response?.data?.department)
+          // console.log(department)
           setPermission(response?.data?.permissions)
-          if (response?.data?.role === "blogger" || response?.data?.role === "blogger") {
-            navigate("/create-blog");
-          } else {
-            navigate("/vendor");
-          }
+          console.log(response?.data?.department[0], response?.data?.role)
+            handleNavigation(response?.data?.department[0], response?.data?.role);
+
+          // if (response?.data?.role === "blogger" || response?.data?.role === "blogger") {
+          //   navigate("/create-blog");
+          // } else {
+          //   navigate("/service/personal-loan");
+
+            
+          // }
         } else {
           throw new Error("Something went wrong! Please try again.");
         }
@@ -157,7 +203,7 @@ const Login = () => {
             </form>
           </div>
         </div>
-        <div className="w-full md:w-[50%] h-[40rem] h-[40vh] md:h-[70vh]">
+        <div className="w-full md:w-[50%]  h-[40vh] md:h-[70vh]">
           <img src={frameImage} className="w-full h-full" alt="Login Visual" />
         </div>
       </div>

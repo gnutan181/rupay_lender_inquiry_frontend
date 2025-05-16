@@ -9,10 +9,8 @@ const Navbar = React.lazy(() => import('../component/Navbar/Navbar'));
 
 import Service from '../component/Service/Service';
 import CreateBlog from '../component/CreateBlog/CreateBlog';
-// import useRole from '../hooks/useRole';
 import Vendor from '../component/Service/ServiceTables/Vendor';
 import VendorDetails from '../component/Service/ServiceTables/VendorDetails';
-// import { subAdminRole } from '../hooks/useGetDepartment';
 
 
 
@@ -36,9 +34,9 @@ const Routers = () => {
     const isToken = sessionStorage.getItem('token') || '';
 
     const location = useLocation();
-    // const role = useRole()
+
     const [displaySideBar, setDisplaySideBar] = useState(false)
-    // const userId = useGetId()
+  
 
 
     return (

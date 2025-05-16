@@ -73,6 +73,13 @@ const UpdateService = ({
                       <option value="Offer shared" label="Offer shared" />
                       <option value="Final verification" label="Final verification" />
                       <option value="Disbursed" label="Disbursed" />
+                      <option value="Cibil less than 650" label="Cibil less than 650" />
+                      <option value="Cibil more than 700" label="Cibil more than 700" />
+                      <option value="Overdue" label="Overdue" />
+                      <option value="Multiple loans in 6 months" label="Multiple loans in 6 months" />
+                      <option value="Multiple inquiries" label="Multiple inquiries" />
+
+                      
                     </select>
                     {formik.touched.status && formik.errors.status ? (
                       <p className="text-red-500 text-xs mt-1">
