@@ -1,20 +1,9 @@
 // Service.js
 import { useCallback, useEffect, useState, useMemo } from "react";
 import axiosInstance from "../axiosInstance";
-
-// import { TbDownload } from "react-icons/tb";
-// import { MdOutlineRemoveRedEye } from "react-icons/md";
-// import { useNavigate } from "react-router-dom";
-// import ReactPaginate from "react-paginate";
-
 import { useParams } from "react-router-dom";
 import UpdateService from "./UpdateService";
-// import CreditCardList from "./ServiceTables/CreditCardList";
-// import HomeLoanList from "./ServiceTables/HomeLoanList";
 import PersonalLoanList from "./ServiceTables/PersonaLoanList";
-// import BusinessLoanList from "./ServiceTables/BusinessLoanList";
-// import LapList from "./ServiceTables/LapList";
-
 
 const Service = () => {
   const params = useParams();
@@ -27,9 +16,7 @@ const Service = () => {
   const [itemsPerPage, setItemsPerPage] = useState(20);
   // const navigate = useNavigate();
   const [serviceData, setServiceData] = useState([]);
-  // const [currentPage, setCurrentPage] = useState(0);
-  // const [pageCount, setPageCount] = useState(0);
-  // const itemsPerPage = 7;
+
   const filteredData =
   statusFilter === "all"
     ? serviceData
@@ -48,18 +35,7 @@ const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   }
 };
-// const getStatusColor = (status) => {
-//   switch (status?.toLowerCase()) {
-//     case "pending":
-//       return "#ED2037";
-//     case "approved":
-//       return "#33CC66";
-//     case "rejected":
-//       return "#FFA500";
-//     default:
-//       return "#555";
-//   }
-// };
+
 const handleItemsPerPageChange = (e) => {
   setItemsPerPage(Number(e.target.value));
   setCurrentPage(0); // Reset to the first page when changing items per page
@@ -100,16 +76,6 @@ const handleItemsPerPageChange = (e) => {
   }, [fetchServiceData]);
 
 
- 
-
- 
-
-  // Get paginated data based on current page
-  // const paginatedData = useMemo(() => {
-  //   const offset = currentPage * itemsPerPage;
-  //   return serviceData.slice(offset, offset + itemsPerPage);
-  // }, [serviceData, currentPage, itemsPerPage]);
-
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [selectedCardId, setSelectedCardId] = useState("");
 
@@ -130,8 +96,6 @@ const handleItemsPerPageChange = (e) => {
       console.error("Error Config:", error.config);
     }
   }
-
-
   const editCard = (applicationId) => {
     setShowUpdateModal(true);
     setSelectedCardId(applicationId);
@@ -180,6 +144,8 @@ const handleItemsPerPageChange = (e) => {
                       <option value="Cibil more than 700" label="Cibil more than 700" />
                       <option value="Overdue" label="Overdue" />
                       <option value="Multiple loans in 6 months" label="Multiple loans in 6 months" />
+                      <option value="Multiple inquiries" label="Multiple inquiries" />
+
 
 
         </select>
